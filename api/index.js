@@ -2,7 +2,7 @@
 require('dotenv').config();
 
 const express = require('express');
-const cors = require('cors');
+const cors = require('cors'); // Import the cors middleware
 const mongoose = require("mongoose");
 const User = require('./models/User');
 const Post = require('./models/Post');
@@ -17,10 +17,12 @@ const fs = require('fs');
 const salt = bcrypt.genSaltSync(10);
 const secret = process.env.SECRET_KEY; // Access the secret key from environment variables
 
+// Use cors middleware and configure it to allow requests from your frontend origin
 app.use(cors({
   credentials: true,
-  origin: ['http://localhost:3000', 'https://incredible-froyo-898a87.netlify.app']
+  origin: 'https://incredible-froyo-898a87.netlify.app'
 }));
+
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
