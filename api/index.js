@@ -17,7 +17,10 @@ const fs = require('fs');
 const salt = bcrypt.genSaltSync(10);
 const secret = process.env.SECRET_KEY; // Access the secret key from environment variables
 
-app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+app.use(cors({ 
+  credentials: true, 
+  origin: ['http://localhost:3000', 'https://incredible-froyo-898a87.netlify.app'] 
+}));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
